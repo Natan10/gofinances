@@ -3,7 +3,6 @@ import * as AuthSession from 'expo-auth-session';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
 const { CLIENT_ID } = process.env;
 const { REDIRECT_URI } = process.env;
 
@@ -51,7 +50,6 @@ const AuthProvider = ({children}: AuthProviderProps) => {
 
       const {type, params} = 
         await AuthSession.startAsync({authUrl}) as AuthorizationResponse;
-      
       if(type === 'success'){
         const response = await fetch(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${params.access_token}`);
         const userInfo = await response.json();
